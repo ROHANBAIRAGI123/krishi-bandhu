@@ -1,0 +1,692 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>CROPIC - Crop Insurance App Preview</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;500;600;700&family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Noto Sans', sans-serif;
+            background: linear-gradient(135deg, #2E7D32 0%, #66BB6A 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .phone-container {
+            width: 100%;
+            max-width: 400px;
+            background: white;
+            border-radius: 30px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            overflow: hidden;
+            position: relative;
+        }
+
+        .screen {
+            display: none;
+            animation: fadeIn 0.3s ease-in;
+        }
+
+        .screen.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Login Screen */
+        .login-screen {
+            background: linear-gradient(180deg, #2E7D32 0%, #4CAF50 50%, #C8E6C9 100%);
+            padding: 40px 30px;
+            min-height: 700px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .app-logo {
+            background: white;
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+
+        .app-logo .material-icons {
+            font-size: 60px;
+            color: #2E7D32;
+        }
+
+        .app-title {
+            font-family: 'Poppins', sans-serif;
+            font-size: 48px;
+            font-weight: 800;
+            color: white;
+            letter-spacing: 3px;
+            margin-bottom: 10px;
+        }
+
+        .app-subtitle {
+            color: rgba(255,255,255,0.95);
+            text-align: center;
+            font-size: 16px;
+            margin-bottom: 40px;
+            line-height: 1.6;
+        }
+
+        .login-card {
+            background: white;
+            padding: 30px;
+            border-radius: 20px;
+            width: 100%;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.15);
+        }
+
+        .login-title {
+            font-family: 'Poppins', sans-serif;
+            font-size: 24px;
+            font-weight: 700;
+            color: #2E7D32;
+            text-align: center;
+            margin-bottom: 25px;
+        }
+
+        .input-group {
+            margin-bottom: 20px;
+        }
+
+        .input-group input {
+            width: 100%;
+            padding: 15px;
+            border: 2px solid #E0E0E0;
+            border-radius: 12px;
+            font-size: 16px;
+            transition: all 0.3s;
+        }
+
+        .input-group input:focus {
+            outline: none;
+            border-color: #2E7D32;
+        }
+
+        .btn-primary {
+            width: 100%;
+            padding: 16px;
+            background: #2E7D32;
+            color: white;
+            border: none;
+            border-radius: 12px;
+            font-family: 'Poppins', sans-serif;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .btn-primary:hover {
+            background: #1B5E20;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(46, 125, 50, 0.3);
+        }
+
+        .pmfby-text {
+            color: rgba(255,255,255,0.9);
+            text-align: center;
+            font-size: 12px;
+            margin-top: 30px;
+        }
+
+        /* Dashboard Screen */
+        .dashboard-screen {
+            min-height: 700px;
+            background: linear-gradient(180deg, #F5F5F5 0%, white 100%);
+        }
+
+        .dashboard-header {
+            background: linear-gradient(180deg, #2E7D32 0%, #4CAF50 100%);
+            padding: 40px 20px 100px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .dashboard-header::before {
+            content: '🌾';
+            position: absolute;
+            right: -30px;
+            top: -30px;
+            font-size: 150px;
+            opacity: 0.1;
+        }
+
+        .greeting {
+            color: white;
+            font-size: 22px;
+            font-weight: 600;
+            margin-bottom: 5px;
+        }
+
+        .weather {
+            color: rgba(255,255,255,0.9);
+            font-size: 14px;
+        }
+
+        .stats-container {
+            display: flex;
+            gap: 10px;
+            padding: 0 20px;
+            margin-top: -60px;
+            position: relative;
+            z-index: 10;
+        }
+
+        .stat-card {
+            flex: 1;
+            background: white;
+            padding: 15px;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            text-align: center;
+        }
+
+        .stat-icon {
+            color: #2E7D32;
+            font-size: 28px;
+            margin-bottom: 8px;
+        }
+
+        .stat-value {
+            font-family: 'Poppins', sans-serif;
+            font-size: 18px;
+            font-weight: 700;
+            color: #212121;
+        }
+
+        .stat-label {
+            font-size: 11px;
+            color: #757575;
+            margin-top: 4px;
+        }
+
+        .main-action {
+            margin: 20px;
+            background: linear-gradient(135deg, #2E7D32 0%, #1B5E20 100%);
+            padding: 20px;
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            cursor: pointer;
+            box-shadow: 0 5px 20px rgba(46, 125, 50, 0.3);
+            transition: all 0.3s;
+        }
+
+        .main-action:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(46, 125, 50, 0.4);
+        }
+
+        .main-action-icon {
+            background: rgba(255,255,255,0.2);
+            padding: 15px;
+            border-radius: 12px;
+        }
+
+        .main-action-icon .material-icons {
+            font-size: 32px;
+            color: white;
+        }
+
+        .main-action-text h3 {
+            color: white;
+            font-size: 18px;
+            font-weight: 700;
+            margin-bottom: 4px;
+        }
+
+        .main-action-text p {
+            color: rgba(255,255,255,0.9);
+            font-size: 12px;
+        }
+
+        .actions-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+            padding: 20px;
+        }
+
+        .action-card {
+            background: white;
+            padding: 20px;
+            border-radius: 16px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s;
+            border: 1px solid #E0E0E0;
+        }
+
+        .action-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+        }
+
+        .action-icon-wrapper {
+            background: linear-gradient(135deg, #E3F2FD 0%, #BBDEFB 100%);
+            width: 60px;
+            height: 60px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 12px;
+        }
+
+        .action-card:nth-child(2) .action-icon-wrapper {
+            background: linear-gradient(135deg, #FFF3E0 0%, #FFE0B2 100%);
+        }
+
+        .action-card:nth-child(3) .action-icon-wrapper {
+            background: linear-gradient(135deg, #F3E5F5 0%, #E1BEE7 100%);
+        }
+
+        .action-card:nth-child(4) .action-icon-wrapper {
+            background: linear-gradient(135deg, #E0F2F1 0%, #B2DFDB 100%);
+        }
+
+        .action-icon-wrapper .material-icons {
+            font-size: 32px;
+            color: #1976D2;
+        }
+
+        .action-card:nth-child(2) .action-icon-wrapper .material-icons {
+            color: #F57C00;
+        }
+
+        .action-card:nth-child(3) .action-icon-wrapper .material-icons {
+            color: #7B1FA2;
+        }
+
+        .action-card:nth-child(4) .action-icon-wrapper .material-icons {
+            color: #00796B;
+        }
+
+        .action-title {
+            font-size: 13px;
+            font-weight: 600;
+            color: #212121;
+            margin-bottom: 4px;
+        }
+
+        .action-subtitle {
+            font-size: 10px;
+            color: #757575;
+        }
+
+        /* Bottom Navigation */
+        .bottom-nav {
+            position: fixed;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100%;
+            max-width: 400px;
+            background: white;
+            border-top: 1px solid #E0E0E0;
+            display: flex;
+            justify-content: space-around;
+            padding: 10px 0;
+            box-shadow: 0 -5px 15px rgba(0,0,0,0.1);
+        }
+
+        .nav-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            cursor: pointer;
+            padding: 5px 15px;
+            transition: all 0.3s;
+        }
+
+        .nav-item.active .material-icons {
+            color: #2E7D32;
+        }
+
+        .nav-item.active .nav-label {
+            color: #2E7D32;
+        }
+
+        .nav-item .material-icons {
+            font-size: 24px;
+            color: #9E9E9E;
+        }
+
+        .nav-label {
+            font-size: 10px;
+            color: #9E9E9E;
+            margin-top: 4px;
+        }
+
+        /* Profile Screen */
+        .profile-screen {
+            min-height: 700px;
+            background: #F5F5F5;
+        }
+
+        .profile-header {
+            background: linear-gradient(180deg, #2E7D32 0%, #4CAF50 100%);
+            padding: 20px;
+            text-align: center;
+            color: white;
+        }
+
+        .profile-avatar {
+            width: 100px;
+            height: 100px;
+            background: white;
+            border-radius: 50%;
+            margin: 20px auto;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 48px;
+            font-weight: 700;
+            color: #2E7D32;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.2);
+        }
+
+        .profile-name {
+            font-size: 24px;
+            font-weight: 700;
+            margin-bottom: 5px;
+        }
+
+        .profile-phone {
+            color: rgba(255,255,255,0.9);
+            font-size: 14px;
+        }
+
+        .profile-details {
+            padding: 20px;
+        }
+
+        .detail-card {
+            background: white;
+            padding: 15px;
+            border-radius: 12px;
+            margin-bottom: 12px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .detail-label {
+            font-size: 14px;
+            color: #757575;
+        }
+
+        .detail-value {
+            font-size: 15px;
+            font-weight: 600;
+            color: #212121;
+            text-align: right;
+        }
+
+        /* Screen Selector */
+        .screen-selector {
+            position: fixed;
+            top: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: white;
+            padding: 10px;
+            border-radius: 30px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.2);
+            display: flex;
+            gap: 10px;
+            z-index: 1000;
+        }
+
+        .screen-btn {
+            padding: 8px 16px;
+            border: none;
+            background: #F5F5F5;
+            border-radius: 20px;
+            cursor: pointer;
+            font-size: 12px;
+            font-weight: 600;
+            color: #757575;
+            transition: all 0.3s;
+        }
+
+        .screen-btn.active {
+            background: #2E7D32;
+            color: white;
+        }
+
+        .screen-btn:hover {
+            background: #E8F5E9;
+        }
+
+        .screen-btn.active:hover {
+            background: #1B5E20;
+        }
+    </style>
+</head>
+<body>
+    <!-- Screen Selector -->
+    <div class="screen-selector">
+        <button class="screen-btn active" onclick="showScreen('login')">Login</button>
+        <button class="screen-btn" onclick="showScreen('dashboard')">Dashboard</button>
+        <button class="screen-btn" onclick="showScreen('profile')">Profile</button>
+    </div>
+
+    <div class="phone-container">
+        <!-- Login Screen -->
+        <div class="screen active" id="login-screen">
+            <div class="login-screen">
+                <div class="app-logo">
+                    <span class="material-icons">agriculture</span>
+                </div>
+                <h1 class="app-title">CROPIC</h1>
+                <p class="app-subtitle">कृषि बीमा सहायक<br>Crop Insurance Assistant</p>
+                
+                <div class="login-card">
+                    <h2 class="login-title">लॉगिन करें</h2>
+                    <div class="input-group">
+                        <input type="tel" placeholder="मोबाइल नंबर (Mobile Number)" value="+91 " maxlength="14">
+                    </div>
+                    <button class="btn-primary" onclick="showScreen('dashboard')">
+                        OTP भेजें (Send OTP)
+                    </button>
+                </div>
+                
+                <p class="pmfby-text">PMFBY - Pradhan Mantri Fasal Bima Yojana</p>
+            </div>
+        </div>
+
+        <!-- Dashboard Screen -->
+        <div class="screen" id="dashboard-screen">
+            <div class="dashboard-screen">
+                <div class="dashboard-header">
+                    <h1 class="greeting">नमस्ते, Anshika 🙏</h1>
+                    <p class="weather">आज का मौसम: धूप ☀️</p>
+                </div>
+
+                <div class="stats-container">
+                    <div class="stat-card">
+                        <div class="stat-icon">🏞️</div>
+                        <div class="stat-value">5.0</div>
+                        <div class="stat-label">एकड़ भूमि</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon">🌾</div>
+                        <div class="stat-value">3</div>
+                        <div class="stat-label">फसलें</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon">📋</div>
+                        <div class="stat-value">2</div>
+                        <div class="stat-label">सक्रिय दावे</div>
+                    </div>
+                </div>
+
+                <div class="main-action">
+                    <div class="main-action-icon">
+                        <span class="material-icons">camera_alt</span>
+                    </div>
+                    <div class="main-action-text">
+                        <h3>फसल की फोटो लें</h3>
+                        <p>Capture Crop Image with GPS</p>
+                    </div>
+                    <span class="material-icons" style="color: white; margin-left: auto;">arrow_forward_ios</span>
+                </div>
+
+                <div class="actions-grid">
+                    <div class="action-card">
+                        <div class="action-icon-wrapper">
+                            <span class="material-icons">add_circle_outline</span>
+                        </div>
+                        <div class="action-title">नया दावा दर्ज करें</div>
+                        <div class="action-subtitle">File New Claim</div>
+                    </div>
+                    <div class="action-card">
+                        <div class="action-icon-wrapper">
+                            <span class="material-icons">history</span>
+                        </div>
+                        <div class="action-title">मेरे दावे</div>
+                        <div class="action-subtitle">My Claims</div>
+                    </div>
+                    <div class="action-card">
+                        <div class="action-icon-wrapper">
+                            <span class="material-icons">policy</span>
+                        </div>
+                        <div class="action-title">बीमा योजनाएं</div>
+                        <div class="action-subtitle">Insurance Schemes</div>
+                    </div>
+                    <div class="action-card" onclick="showScreen('profile')">
+                        <div class="action-icon-wrapper">
+                            <span class="material-icons">help_outline</span>
+                        </div>
+                        <div class="action-title">मदद केंद्र</div>
+                        <div class="action-subtitle">Help Center</div>
+                    </div>
+                </div>
+
+                <div style="height: 80px;"></div>
+            </div>
+
+            <div class="bottom-nav">
+                <div class="nav-item active">
+                    <span class="material-icons">home</span>
+                    <span class="nav-label">होम</span>
+                </div>
+                <div class="nav-item">
+                    <span class="material-icons">description</span>
+                    <span class="nav-label">दावे</span>
+                </div>
+                <div class="nav-item">
+                    <span class="material-icons">policy</span>
+                    <span class="nav-label">योजना</span>
+                </div>
+                <div class="nav-item" onclick="showScreen('profile')">
+                    <span class="material-icons">person</span>
+                    <span class="nav-label">प्रोफाइल</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Profile Screen -->
+        <div class="screen" id="profile-screen">
+            <div class="profile-screen">
+                <div class="profile-header">
+                    <div class="profile-avatar">A</div>
+                    <div class="profile-name">Anshika</div>
+                    <div class="profile-phone">+91 98765 43210</div>
+                </div>
+
+                <div class="profile-details">
+                    <div class="detail-card">
+                        <span class="detail-label">गांव (Village)</span>
+                        <span class="detail-value">Jaitpur</span>
+                    </div>
+                    <div class="detail-card">
+                        <span class="detail-label">जिला (District)</span>
+                        <span class="detail-value">Barabanki</span>
+                    </div>
+                    <div class="detail-card">
+                        <span class="detail-label">राज्य (State)</span>
+                        <span class="detail-value">Uttar Pradesh</span>
+                    </div>
+                    <div class="detail-card">
+                        <span class="detail-label">भूमि क्षेत्र (Land Area)</span>
+                        <span class="detail-value">5.0 एकड़</span>
+                    </div>
+                    <div class="detail-card">
+                        <span class="detail-label">फसलें (Crops)</span>
+                        <span class="detail-value">धान, गेहूं, गन्ना</span>
+                    </div>
+                </div>
+
+                <div style="height: 80px;"></div>
+            </div>
+
+            <div class="bottom-nav">
+                <div class="nav-item" onclick="showScreen('dashboard')">
+                    <span class="material-icons">home</span>
+                    <span class="nav-label">होम</span>
+                </div>
+                <div class="nav-item">
+                    <span class="material-icons">description</span>
+                    <span class="nav-label">दावे</span>
+                </div>
+                <div class="nav-item">
+                    <span class="material-icons">policy</span>
+                    <span class="nav-label">योजना</span>
+                </div>
+                <div class="nav-item active">
+                    <span class="material-icons">person</span>
+                    <span class="nav-label">प्रोफाइल</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function showScreen(screenName) {
+            // Hide all screens
+            document.querySelectorAll('.screen').forEach(screen => {
+                screen.classList.remove('active');
+            });
+            
+            // Show selected screen
+            document.getElementById(screenName + '-screen').classList.add('active');
+            
+            // Update buttons
+            document.querySelectorAll('.screen-btn').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            event.target.classList.add('active');
+        }
+    </script>
+</body>
+</html>
