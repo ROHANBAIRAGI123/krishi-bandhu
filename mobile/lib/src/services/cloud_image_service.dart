@@ -4,14 +4,15 @@ import 'package:http/http.dart' as http;
 import 'dart:convert';
 import 'package:path/path.dart' as path;
 import 'package:flutter_image_compress/flutter_image_compress.dart';
+import '../config/env.dart'
 
 /// Service for uploading images to cloud storage (Cloudinary)
 class CloudImageService {
   // Cloudinary credentials (from .env file)
-  static const String cloudName = 'dxahqsgwv';
-  static const String apiKey = '916295378241238';
-  static const String apiSecret = 'X2GoZB5cN3lnPSE4HEuOAby1m80';
-  static const String uploadPreset = 'pmfby-app';
+  static const String cloudName = Env.cloudinaryCloudName;
+  static const String apiKey = Env.cloudinaryApiKey;
+  static const String apiSecret = Env.cloudinaryApiSecret;
+  static const String uploadPreset = Env.cloudinaryUploadPreset;
 
   static const String baseUrl = 'https://api.cloudinary.com/v1_1';
   static const String uploadFolder = 'pmfby_crops';

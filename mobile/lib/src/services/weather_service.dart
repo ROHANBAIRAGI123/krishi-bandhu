@@ -3,10 +3,11 @@ import 'dart:async';
 import 'package:http/http.dart' as http;
 import 'package:geolocator/geolocator.dart';
 import 'package:geocoding/geocoding.dart';
+import '../config/env.dart';
 
 class WeatherService {
-  static const String _apiKey = 'b6907d289e10d714a6e88b30761fae22';
-  static const String _baseUrl = 'https://api.openweathermap.org/data/2.5';
+  static const String _apiKey = Env.weatherApiKey;
+  static const String _baseUrl = Env.weatherApiBaseUrl;
 
   /// Get current location
   Future<Position?> getCurrentLocation() async {

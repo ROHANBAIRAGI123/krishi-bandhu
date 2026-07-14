@@ -1,0 +1,15 @@
+{
+    "API_BASE_URL": "your api url",
+    "WEATHER_API_KEY": "your weather api key",
+    "WEATHER_API_BASE_URL": "your weather api base url",
+    "CLOUDINARY_CLOUD_NAME": "your cloudinary cloud name",
+    "CLOUDINARY_API_KEY": "your cloudinary api key",
+    "CLOUDINARY_API_SECRET": "your cloudinary api secret",
+    "CLOUDINARY_UPLOAD_PRESET": "your cloudinary upload preset",
+    "GMAIL_EMAIL": "your gmail email",
+    "GMAIL_APP_PASSWORD": "your gmail app password",
+    "MONGO_USER": "your mongo user",
+    "MONGO_PASSWORD": "your mongo password",
+    "MONGO_CLUSTER": "your mongo cluster",
+    "MONGO_DB": "your mongo db"
+}

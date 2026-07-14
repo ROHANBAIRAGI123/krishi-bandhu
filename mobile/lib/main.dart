@@ -204,15 +204,12 @@ GoRouter _buildRouter(BuildContext context) {
         path: '/officer-dashboard',
         builder: (_, __) => const OfficerDashboardScreen(),
       ),
-<<<<<<< HEAD
-=======
       
       // DISTRICT EFFICIENCY SCORE
       GoRoute(
         path: '/district-efficiency',
         builder: (_, __) => const DistrictEfficiencyScreen(),
       ),
->>>>>>> 7714536 (Added Traffic Light Dashboard Feature - District Efficiency Score Screen with gamified pending claims widget)
 
       // CAMERA
       GoRoute(
