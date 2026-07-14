@@ -4,7 +4,7 @@
   "description": "Express + TypeScript REST API for Krishi Bandhu crop insurance platform",
   "main": "dist/index.js",
   "scripts": {
-    "dev": "nodemon",
+    "dev": "ts-node-dev --respawn --transpile-only src/index.ts",
     "build": "tsc",
     "start": "node dist/index.js",
     "lint": "eslint src/ --ext .ts",
@@ -32,12 +32,13 @@
   "devDependencies": {
     "@types/cors": "^2.8.19",
     "@types/express": "^5.0.6",
-    "@types/node": "^26.1.1",
+    "@types/node": "^20.11.0",
     "@typescript-eslint/eslint-plugin": "^8.63.0",
     "@typescript-eslint/parser": "^8.63.0",
     "eslint": "^10.7.0",
     "nodemon": "^3.1.14",
     "ts-node": "^10.9.2",
+    "ts-node-dev": "^2.0.0",
     "typescript": "^6.0.3"
   }
 }
