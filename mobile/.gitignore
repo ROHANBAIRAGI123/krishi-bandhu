@@ -1,0 +1,45 @@
+# ============================================================
+# SECRETS — Never commit these
+# ============================================================
+config_dev.json
+config_prod.json
+config_staging.json
+.env
+.env.*
+!.env.example
+
+# Firebase — auto-generated but may contain project-specific values
+# google-services.json     # Uncomment to also exclude
+# GoogleService-Info.plist # Uncomment to also exclude
+
+# ============================================================
+# Flutter / Dart build artifacts
+# ============================================================
+.dart_tool/
+.flutter-plugins
+.flutter-plugins-dependencies
+.packages
+.pub-cache/
+.pub/
+build/
+
+# Generated files
+*.g.dart
+*.freezed.dart
+*.mocks.dart
+
+# ============================================================
+# IDE & Editor
+# ============================================================
+.idea/
+.vscode/
+*.iml
+*.ipr
+*.iws
+
+# ============================================================
+# OS & Misc
+# ============================================================
+.DS_Store
+Thumbs.db
+*.log

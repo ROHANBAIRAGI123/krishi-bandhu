@@ -3,6 +3,7 @@ import 'package:flutter/foundation.dart';
 import 'dart:developer' as developer;
 import 'package:mailer/mailer.dart';
 import 'package:mailer/smtp_server.dart';
+import '../config/env.dart';
 
 /// Email OTP Service using free SMTP providers
 /// 
@@ -199,8 +200,10 @@ class EmailOTPService {
     // 5. Copy the 16-character password and paste below
     // 6. Uncomment the code below and add your credentials
     
-    const gmailEmail = 'rohanbairagi40@gmail.com';
-    const gmailAppPassword = 'mnrolimmcllmljeh'; // Removed spaces from app password
+    const gmailEmail = Env.gmailEmail;
+    const gmailAppPassword = Env.gmailAppPassword;
+
+
     if (_verboseLogging) developer.log('📤 [EmailOTP] Using Gmail SMTP: $gmailEmail');
     return gmail(gmailEmail, gmailAppPassword);
   }
@@ -208,7 +211,7 @@ class EmailOTPService {
   static String _getSenderEmail() {
     if (_verboseLogging) developer.log('📧 [EmailOTP] Getting sender email address...');
     // Configure your sender email here
-    final senderEmail = 'rohanbairagi40@gmail.com';
+    final senderEmail = Env.gmailEmail;
     if (_verboseLogging) developer.log('📧 [EmailOTP] Sender email: $senderEmail');
     return senderEmail;
   }
