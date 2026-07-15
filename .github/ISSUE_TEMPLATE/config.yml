@@ -1,0 +1,18 @@
+blank_issues_enabled: false
+
+contact_links:
+  - name: 💬 GitHub Discussions
+    url: https://github.com/ROHANBAIRAGI123/project-base/discussions
+    about: Ask questions, share ideas, and discuss the project before opening an issue.
+
+  - name: 📖 Documentation
+    url: https://github.com/ROHANBAIRAGI123/project-base/tree/main/docs
+    about: Read the full project documentation including AUTH.md, PRD.md, and VALIDATION.md.
+
+  - name: 🤝 Contributing Guide
+    url: https://github.com/ROHANBAIRAGI123/project-base/blob/main/CONTRIBUTING.md
+    about: Learn the branching strategy, PR workflow, and quality checks before contributing.
+
+  - name: 🔒 Security Policy
+    url: Yet to be added
+    about: Report security vulnerabilities privately. Do not open a public issue for security bugs.
