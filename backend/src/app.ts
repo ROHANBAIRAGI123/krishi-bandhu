@@ -1,6 +1,7 @@
 import express from 'express';
 import cors from 'cors';
 import healthCheckRouter from './routers/healthCheck.router';
+// import "./config/env"
 
 const app = express();
 
