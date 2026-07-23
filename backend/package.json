@@ -4,9 +4,9 @@
   "description": "Express + TypeScript REST API for Krishi Bandhu crop insurance platform",
   "main": "dist/index.js",
   "scripts": {
-    "dev": "ts-node-dev --respawn --transpile-only src/index.ts",
-    "build": "tsc",
     "start": "node dist/index.js",
+    "dev": "concurrently \"tsc --watch\" \"nodemon dist/index.js\"",
+    "build": "tsc",
     "lint": "eslint src/ --ext .ts",
     "lint:fix": "eslint src/ --ext .ts --fix"
   },
@@ -21,11 +21,14 @@
     "node": ">=20.0.0"
   },
   "dependencies": {
+    "bcryptjs": "^3.0.3",
     "cloudinary": "^2.10.0",
+    "concurrently": "^10.0.3",
     "cors": "^2.8.6",
     "dotenv": "^17.4.2",
     "express": "^5.2.1",
     "firebase-admin": "^14.1.0",
+    "jsonwebtoken": "^9.0.3",
     "mongoose": "^9.7.4",
     "zod": "^4.4.3"
   },
