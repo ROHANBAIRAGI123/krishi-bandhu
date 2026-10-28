@@ -7,7 +7,7 @@ An AI-powered crop insurance platform built for India's PMFBY (Pradhan Mantri Fa
 ```
 krishi-bandhu/
 ├── backend/    → Express + TypeScript REST API
-├── web/        → Next.js 15 officer dashboard
+├── web/        → Next.js 16 officer dashboard with local demo data
 ├── mobile/     → Flutter mobile app (farmer-facing)
 ├── docs/       → Architecture, API contracts, guides
 └── ai/         → (Future) Python FastAPI ML service
@@ -26,6 +26,18 @@ krishi-bandhu/
 | **AI** | (Future) FastAPI + ML models |
 
 ## Getting Started
+
+### Try the web demo
+
+The officer frontend works immediately with 12 sample farmers, 24 claims, and 9 crop-image records. No backend credentials are required for the demo.
+
+```bash
+cd web
+npm ci
+npm run dev
+```
+
+Open [http://localhost:3000](http://localhost:3000). Claims, farmer profiles, crop verification, reports, CSV exports, and local review persistence are available. See [web/README.md](web/README.md) for details and [repository findings](docs/FRONTEND_IMPLEMENTATION.md) for the backend integration boundary.
 
 ### Prerequisites
 

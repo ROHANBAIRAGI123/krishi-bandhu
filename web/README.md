@@ -1,36 +1,55 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Krishi Bandhu officer workspace
 
-## Getting Started
+A responsive Next.js 16 / React 19 frontend with a ready-to-use local demo. No Firebase, MongoDB, Cloudinary, or backend environment variables are needed.
 
-First, run the development server:
+## Run locally
 
 ```bash
+cd web
+npm ci
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open http://localhost:3000. The optional `/login` page introduces the demo; it does not implement production authentication.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Included workflows
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+- Overview: season-specific totals, charts, recent claims and activity.
+- Claims: name/ID/village/crop search, status/crop filters, pagination and filtered CSV downloads.
+- Review: inspect evidence, approve a bounded amount, reject with a required reason, mark in review, and mark approved claims paid (demo only).
+- Farmers: searchable directory, crop filters, profiles and claim history across seasons.
+- Crop verification: gallery, accessible modal review, verification/flagging/rejection with required reasons.
+- Reports: crop totals, season filtering, CSV downloads and review activity.
+- Settings: restore original demo data with an inline confirmation.
+- Responsive navigation, keyboard focus, reduced motion, notifications and empty states.
 
-## Learn More
+## Demo data
 
-To learn more about Next.js, take a look at the following resources:
+`src/lib/demo-data.ts` contains 12 farmers, 24 claims across two seasons and 9 illustrative image records. The first three farmer identities are reused from `mobile/lib/src/utils/demo_users.dart`; additional identities, claims, parcels, amounts and image metadata are synthetic. The demo review officer uses the existing Priya Sharma name with a demo Nagpur assignment, not her mobile account's jurisdiction.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+Decisions and activity persist under `krishi-bandhu-demo-v1` in local storage and synchronize across tabs. Invalid storage falls back to fixtures; failed saves show a session-only notice. Dashboard metrics and exports derive from those records. No payment or live AI assessment occurs.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## Verification
 
-## Deploy on Vercel
+```bash
+npm run lint
+npm test
+npm run build
+```
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+Dependency-free tests require Node 22.6+ (validated on Node 24). They cover fixture relationships, claim transitions, approval limits and storage restoration. The app requires Node 20.9+ for Next.js. `next/font/google` bundles fonts at build time, so the first build needs access to Google Fonts.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## Source layout
+
+- `src/app/(dashboard)`: routes and shared shell.
+- `src/components`: dashboard, claims, farmers and image workflows.
+- `src/lib/demo-store.tsx`: browser persistence and notifications.
+- `src/lib/demo-rules.ts`: review validation and safe restoration.
+- `src/types`: frontend domain types aligned with backend statuses.
+- `public/demo`: local illustrative photographs; see `SOURCES.md`.
+
+## Backend boundary
+
+The latest backend includes health, officer, farmer and claim routes. This frontend still uses its local demo store. Before production use, connect the authenticated API, complete crop-image endpoints and evidence storage, and validate server-side authorization and audit logging. Client-side demo validation is not authorization.
+
+Design: forest green and warm neutrals, DM Sans body text, Manrope headings, a 4px spacing rhythm and restrained hover/focus motion. Repository findings are documented in `../docs/FRONTEND_IMPLEMENTATION.md`.
