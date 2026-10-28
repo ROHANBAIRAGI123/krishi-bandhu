@@ -30,6 +30,8 @@
     "firebase-admin": "^14.1.0",
     "jsonwebtoken": "^9.0.3",
     "mongoose": "^9.7.4",
+    "winston": "^3.19.0",
+    "winston-transport": "^4.9.0",
     "zod": "^4.4.3"
   },
   "devDependencies": {
